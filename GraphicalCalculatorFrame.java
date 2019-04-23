@@ -445,7 +445,6 @@ public class GraphicalCalculatorFrame extends JFrame
         this.setLayout(new GridLayout(2, 0));
 
         // TODO: add components to panels
-
         panel1.add(operandEntry);
         panel2.add(setOperand);
         panel2.add(setOperator);
@@ -478,8 +477,10 @@ public class GraphicalCalculatorFrame extends JFrame
          * If the set operation fails, display the error message "Failed to set operand value".
          * If the set operation succeeds, clear any error messages.
          */
-        setOperand.addActionListener((e) -> {
+        setOperand.addActionListener((e) -> 
+        {
         		// TODO: attempt to modify the selected region in gcPanel with the new operand value.
+        	gcPanel.setSelectedRegionContents(operandEntry.getText());
         	}
         );
 
@@ -493,8 +494,10 @@ public class GraphicalCalculatorFrame extends JFrame
          * If the set operation fails, display the error message "Failed to set operator value".
          * If the set operation succeeds, clear any error messages.
          */
-        setOperator.addActionListener((e) -> {
+        setOperator.addActionListener((e) -> 
+        {
     		// TODO: attempt to modify the selected region in gcPanel with the new operator value.
+        	gcPanel.setSelectedRegionContents();
         });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
