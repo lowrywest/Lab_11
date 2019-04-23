@@ -230,7 +230,7 @@ public class GraphicalCalculatorFrame extends JFrame
 				if(regions[i].contains(p))
 				{
 					selectedRegion=i;
-				}
+				}	
 			}
 			// Repaint the panel (this will implicitly call paintComponent):
 			this.repaint();
@@ -260,7 +260,56 @@ public class GraphicalCalculatorFrame extends JFrame
 			 *
 			 * Return false if the set operation cannot be done.
 			 */
-
+			
+			if(selectedRegion%2==0)
+			{
+				if(content.length()>1)
+				{
+					return false;
+				}
+				if (content.charAt(0)<'0' || content.charAt(0)>'9')
+				{
+					return false;
+				}
+				
+				if(selectedRegion==0)
+				{
+					operands[0]= Integer.valueOf(content);
+				}
+				else if(selectedRegion==2)
+				{
+					operands[1]= Integer.valueOf(content);
+				}
+				else if(selectedRegion==4)
+				{
+					operands[2]=Integer.valueOf(content);
+				}
+			}
+			/*
+			 * checking the operators
+			 */
+			else
+			{
+				if(content.length()>1)
+				{
+					return false;
+				}
+				if(content.charAt(0)!='+'&& content.charAt(0)!='-'&&content.charAt(0)!= '*')
+				{
+					return false;
+				}
+				/*
+				 * updating the operator in the box
+				 */
+				if(selectedRegion==1)
+				{
+					operators[0]=content;
+				}
+				else
+				{
+					operators[1]=content;
+				}
+			}
 			this.repaint();
 
 			return success;
@@ -275,9 +324,35 @@ public class GraphicalCalculatorFrame extends JFrame
 		public int evaluate()
 		{
 			// TODO: evaluate the expression. (operand0 operator0 operand1) operator1 operand2
-			int ans =0;
+			int ans =operands[0];
 			
-			return 0;
+			if(operators[0]=="+")
+			{
+				ans+=operands[1];
+			}
+			else if(operators[0]=="-")
+			{
+				ans-=operands[1];
+			}
+			else
+			{
+				ans*=operands[1];
+			}
+			
+			if(operators[1]=="+")
+			{
+				ans+=operands[2];
+			}
+			else if(operators[1]=="-")
+			{
+				ans-=operands[2];
+			}
+			else
+			{
+				ans*=operands[2];
+			}
+			
+			return ans;
 		}
 
 		/** DO NOT MODIFY - DOES NOTHING */
