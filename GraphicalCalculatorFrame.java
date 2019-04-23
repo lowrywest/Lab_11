@@ -224,9 +224,19 @@ public class GraphicalCalculatorFrame extends JFrame
 		{
 			// If the mouse clicked within a region, set that region to be the selected region.
 			// TODO: check if a clicked point is within a region. If so, set that region to be selected.
+			/*
+			 * getting the point where the mouse it clicked
+			 */
 			Point p= new Point(e.getX(),e.getY());
+			/*
+			 * looping through the regions array 
+			 */
 			for(int i=0;i<5;i++)
 			{
+				/*
+				 * if the region has the point where the mouse is clicked then the selected region is set equal
+				 * to the region. 
+				 */
 				if(regions[i].contains(p))
 				{
 					selectedRegion=i;
@@ -260,18 +270,28 @@ public class GraphicalCalculatorFrame extends JFrame
 			 *
 			 * Return false if the set operation cannot be done.
 			 */
-			
+			/*
+			 * if the region is an even number aka the operand 
+			 */
 			if(selectedRegion%2==0)
 			{
+				/*
+				 * the array cannot be more than one character
+				 */
 				if(content.length()>1)
 				{
 					return false;
 				}
+				/*
+				 * the number has to be between 0 and 9
+				 */
 				if (content.charAt(0)<'0' || content.charAt(0)>'9')
 				{
 					return false;
 				}
-				
+				/*
+				 * changing the value to the input from the text field 
+				 */
 				if(selectedRegion==0)
 				{
 					operands[0]= Integer.valueOf(content);
@@ -290,10 +310,16 @@ public class GraphicalCalculatorFrame extends JFrame
 			 */
 			else
 			{
+				/*
+				 * the array cannot be more than one character
+				 */
 				if(content.length()>1)
 				{
 					return false;
 				}
+				/*
+				 * the array must be a + or _ or *
+				 */
 				if(content.charAt(0)!='+'&& content.charAt(0)!='-'&&content.charAt(0)!= '*')
 				{
 					return false;
@@ -324,8 +350,13 @@ public class GraphicalCalculatorFrame extends JFrame
 		public int evaluate()
 		{
 			// TODO: evaluate the expression. (operand0 operator0 operand1) operator1 operand2
+			/*
+			 * the variable that will be returned as the new number
+			 */
 			int ans =operands[0];
-			
+			/*
+			 * changing the value as the operator says
+			 */
 			if(operators[0]=="+")
 			{
 				ans+=operands[1];
@@ -339,6 +370,9 @@ public class GraphicalCalculatorFrame extends JFrame
 				ans*=operands[1];
 			}
 			
+			/*
+			 * changing the value as the operator says
+			 */
 			if(operators[1]=="+")
 			{
 				ans+=operands[2];
@@ -445,6 +479,9 @@ public class GraphicalCalculatorFrame extends JFrame
         this.setLayout(new GridLayout(2, 0));
 
         // TODO: add components to panels
+        /*
+         * adding the components to the panels
+         */
         panel1.add(operandEntry);
         panel2.add(setOperand);
         panel2.add(setOperator);
@@ -453,6 +490,9 @@ public class GraphicalCalculatorFrame extends JFrame
         panel3.add(multiply);
         panel4.add(errorMessage);
         // TODO: add radio buttons to the button group
+        /*
+         * adding the radio buttons to the ops button group
+         */
         ops.add(add);
         ops.add(subtract);
         ops.add(multiply);
@@ -460,6 +500,9 @@ public class GraphicalCalculatorFrame extends JFrame
         add.setSelected(true); //remember, the button group ensures only one button is selected
 
         // TODO: add sub-panels into panel 0
+        /*
+         * adding all panels to the panel 0
+         */
         panel0.add(panel1);
         panel0.add(panel2);
         panel0.add(panel3);
@@ -480,6 +523,9 @@ public class GraphicalCalculatorFrame extends JFrame
         setOperand.addActionListener((e) -> 
         {
         		// TODO: attempt to modify the selected region in gcPanel with the new operand value.
+        	/*
+        	 * updating the regions if the button is clicked
+        	 */
         	gcPanel.setSelectedRegionContents(operandEntry.getText());
         	}
         );
@@ -497,9 +543,13 @@ public class GraphicalCalculatorFrame extends JFrame
         setOperator.addActionListener((e) -> 
         {
     		// TODO: attempt to modify the selected region in gcPanel with the new operator value.
-        	//if(gcPanel)
-        //	gcPanel.setSelectedRegionContents();
+        	/*
+        	 * empty string to hold the change of operator 
+        	 */
         	String content = "";
+        	/*
+        	 * updating the operator if the radio button is selected
+        	 */
         	if(add.isSelected())
         	{
         		content = "+";
