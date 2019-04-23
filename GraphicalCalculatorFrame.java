@@ -120,6 +120,12 @@ public class GraphicalCalculatorFrame extends JFrame
 			// The regions should be spaced horizontally be REGION_INC_X
 			// The regions should be the same size
 			// There should be 5 regions
+			regions= new Rectangle[5];
+			for(int i=0; i <5; i++ )
+			{
+				regions[i]=new Rectangle(REGION_START_X+i*REGION_INC_X, REGION_START_Y,REGION_HEIGHT,REGION_WIDTH);
+			}
+			
 		}
 
 		/**
@@ -245,6 +251,9 @@ public class GraphicalCalculatorFrame extends JFrame
 		public int evaluate()
 		{
 			// TODO: evaluate the expression. (operand0 operator0 operand1) operator1 operand2
+			int ans =0;
+			
+			
 		}
 
 		/** DO NOT MODIFY - DOES NOTHING */
