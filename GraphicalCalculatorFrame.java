@@ -120,7 +120,13 @@ public class GraphicalCalculatorFrame extends JFrame
 			// The regions should be spaced horizontally be REGION_INC_X
 			// The regions should be the same size
 			// There should be 5 regions
+			/*
+			 * Initializing the array to a length of 5
+			 */
 			regions= new Rectangle[5];
+			/*
+			 * adding the rectangle into the array while incrementing the width
+			 */
 			for(int i=0; i <5; i++ )
 			{
 				regions[i]=new Rectangle(REGION_START_X+i*REGION_INC_X, REGION_START_Y,REGION_HEIGHT,REGION_WIDTH);
@@ -159,7 +165,10 @@ public class GraphicalCalculatorFrame extends JFrame
 			super.paintComponent(g);
 
 			// TODO: Draw bounding boxes on all regions (regions are stored as rectangles):
-
+			for(int i=0;i<5;i++)
+			{
+				g.drawRect(regions[i].x, regions[i].y, regions[i].width, regions[i].height);
+			}
 			// Draw the text at the specified text points:
 			// Pattern is: operand operator operand operator operand = result
 			for (int pt = 0; pt < textPoints.length; pt++)
@@ -192,6 +201,8 @@ public class GraphicalCalculatorFrame extends JFrame
 			}
 
 			// TODO: Draw translucent rectangle over selected region (use the highlight color):
+			g.setColor(highlight);
+			g.fillRect(regions[selectedRegion].x, regions[selectedRegion].y, REGION_WIDTH, REGION_HEIGHT);
 		}
 
 		/**
@@ -253,7 +264,7 @@ public class GraphicalCalculatorFrame extends JFrame
 			// TODO: evaluate the expression. (operand0 operator0 operand1) operator1 operand2
 			int ans =0;
 			
-			
+			return 0;
 		}
 
 		/** DO NOT MODIFY - DOES NOTHING */
@@ -383,11 +394,11 @@ public class GraphicalCalculatorFrame extends JFrame
          */
         setOperator.addActionListener((e) -> {
     		// TODO: attempt to modify the selected region in gcPanel with the new operator value.
-        );
-
+        });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+    
 
 	/**
 	 * Main method to the program. Creates a new GraphicalCalculatorFrame object,
