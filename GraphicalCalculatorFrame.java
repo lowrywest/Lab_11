@@ -165,6 +165,9 @@ public class GraphicalCalculatorFrame extends JFrame
 			super.paintComponent(g);
 
 			// TODO: Draw bounding boxes on all regions (regions are stored as rectangles):
+			/*
+			 * Drawing the rectangles
+			 */
 			for(int i=0;i<5;i++)
 			{
 				g.drawRect(regions[i].x, regions[i].y, regions[i].width, regions[i].height);
@@ -201,6 +204,9 @@ public class GraphicalCalculatorFrame extends JFrame
 			}
 
 			// TODO: Draw translucent rectangle over selected region (use the highlight color):
+			/*
+			 * setting the color and filling the rectangle that is clicked
+			 */
 			g.setColor(highlight);
 			g.fillRect(regions[selectedRegion].x, regions[selectedRegion].y, REGION_WIDTH, REGION_HEIGHT);
 		}
@@ -218,7 +224,14 @@ public class GraphicalCalculatorFrame extends JFrame
 		{
 			// If the mouse clicked within a region, set that region to be the selected region.
 			// TODO: check if a clicked point is within a region. If so, set that region to be selected.
-
+			Point p= new Point(e.getX(),e.getY());
+			for(int i=0;i<5;i++)
+			{
+				if(regions[i].contains(p))
+				{
+					selectedRegion=i;
+				}
+			}
 			// Repaint the panel (this will implicitly call paintComponent):
 			this.repaint();
 		}
