@@ -497,7 +497,24 @@ public class GraphicalCalculatorFrame extends JFrame
         setOperator.addActionListener((e) -> 
         {
     		// TODO: attempt to modify the selected region in gcPanel with the new operator value.
-        	gcPanel.setSelectedRegionContents();
+        	//if(gcPanel)
+        //	gcPanel.setSelectedRegionContents();
+        	String content = "";
+        	if(add.isSelected())
+        	{
+        		content = "+";
+        	}
+        	else if (subtract.isSelected())
+        	{
+        		content="-";
+        	}
+        	else
+        	{
+        		content="*";
+        	}
+        	gcPanel.setSelectedRegionContents(content);
+
+        	
         });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
